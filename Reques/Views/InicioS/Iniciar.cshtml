@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Iniciar";
+    Layout = "~/Views/Shared/_InicioN.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container container-fluid">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav ">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                </ul>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+                @Html.ActionLink("Sign In", "Index", "Home", new { area = "" }, new { @class = "navbar-btn btn btn-primary" })
+                @Html.ActionLink("Login", "Index", "Home", new { area = "" }, new { @class = "navbar-btn btn btn-primary" })
+
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputUsuario">Usuario</label>
+                <input type="text" class="form-control" id="exampleInputUsuario" placeholder="Ingrese el usuario">
+                
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+
+</body>
+</html>
+
+
