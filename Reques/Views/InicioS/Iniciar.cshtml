@@ -11,28 +11,25 @@
     <title>Index</title>
 </head>
 <body>
+    <div>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container container-fluid">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav ">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    </ul>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    </button>
+                    @Html.ActionLink("Sign In", "Index", "Home", new { area = "" }, new { @class = "navbar-btn btn btn-primary" })
+                    @Html.ActionLink("Login", "Index", "Home", new { area = "" }, new { @class = "navbar-btn btn btn-primary" })
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container container-fluid">
-            <div class="navbar-collapse collapse">
-
-
-                <ul class="nav navbar-nav ">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
-
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                </button>
-                @Html.ActionLink("Sign In", "Index", "Home", new { area = "" }, new { @class = "navbar-btn btn btn-primary" })
-                @Html.ActionLink("Login", "Index", "Home", new { area = "" }, new { @class = "navbar-btn btn btn-primary" })
+                </div>
 
             </div>
-
         </div>
     </div>
-
     <br />
     <br />
     <br />
