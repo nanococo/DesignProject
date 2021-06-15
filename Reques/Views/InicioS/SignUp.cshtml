@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Iniciar";
+﻿
+@{
+    ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_InicioN.cshtml";
 }
 
@@ -8,36 +9,37 @@
 <html lang="es">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Sign Up</title>
 </head>
 <body class="modalPage">
 
     <div id="parent">
         <form id="form_login">
+
             <div class="form-header">
-                <h2><b>Sign In</b></h2>
+                <h2><b>Sign Up</b></h2>
+            </div>
+
+            <div class="form-item">
+                <label for="fname">Name</label><br />
+                <input type="text" id="fname" name="name" placeholder="Name.."><br />
             </div>
 
             <div class="form-item">
                 <label for="fname">Username</label><br />
                 <input type="text" id="fname" name="username" placeholder="Username.."><br />
             </div>
-            
+
             <div class="form-item">
                 <label for="lname">Password</label><br />
                 <input type="text" id="lname" name="password" placeholder="Password.."><br />
             </div>
 
-            <div>
-                <p>Don't have an account? <a href="/InicioS/SignUp">Sign Up Here</a></p>
-            </div>
-
-            <input type="submit" value="Login">
+            <input type="submit" value="Sign Up">
         </form>
     </div>
 
 
 </body>
 </html>
-
 

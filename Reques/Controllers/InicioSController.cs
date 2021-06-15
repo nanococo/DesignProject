@@ -13,8 +13,13 @@ namespace Reques.Controllers
 
         public ActionResult Iniciar()
         {
-            var n = new Inicio() { Nombre = "Jocxan", Contra = "123" };
+            var n = new PageHeader() { header = "Login" };
+            return View(n);
+        }
+
+        public ActionResult SignUp() {
+            var n = new PageHeader() { header = "Sign Up" };
             return View(n);
         }
     }
-}
+} 

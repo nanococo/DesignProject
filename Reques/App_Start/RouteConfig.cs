@@ -18,6 +18,12 @@ namespace Reques
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "InicioS", action = "Iniciar", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "SignUp",
+                url: "signUp",
+                defaults: new { controller = "InicioS", action = "SignUp", id = UrlParameter.Optional }
+            );
         }
     }
 }
