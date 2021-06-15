@@ -1,23 +1,83 @@
-﻿li {
+﻿body {
+    background-color: #90c2ff;
+    font-family: Arial;
+}
+
+li {
     display: inline;
     float: left;
-    border-bottom: 1px solid gray;
 }
 
 ul {
+    background-color: white;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: -1%;
+    padding-top: 12px;
     overflow: hidden;
+    border-bottom: 1px solid gray;
 }
 
-li a {
+.header {
     display: block;
     color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-family: Arial;
+    font-size: 1.2em;
+}
+
+#parent {
+    display: table;
+    width: 30%;
+    text-align: center;
+    background-color: white;
+    margin: auto;
+    margin-top: 7%;
+    margin-bottom: 5%;
+    padding-top: 1%;
+    padding-bottom: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+#form_login {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+input[type=text], select {
+    width: 90%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5%
+}
+
+input[type=submit] {
+    width: 30%;
+    background-color: #0052CC;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
 }
 
 
+
+.form-item {
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.form-header {
+    vertical-align: text-top;
+    padding: 6%;
+}
