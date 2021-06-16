@@ -135,5 +135,19 @@ namespace Reques.Models
             }
         }
 
+        public void RegistrarRequerimiento(String name, String description, String radio, String projectId) {
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+
+
+                conn.Open();
+                SqlCommand comando = new SqlCommand("Exec Inserta_Requerimiento 1, " + projectId + ", " + radio + ", '"+name+"', '"+description+"'", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+                conn.Close();
+            }
+        }
+
+
+
     }
 }

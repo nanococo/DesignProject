@@ -20,21 +20,9 @@ namespace Reques
             );
 
             routes.MapRoute(
-                name: "ProjectRequirements",
-                url: "projectRequirements",
-                defaults: new { controller = "InicioS", action = "ProjectRequirements", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
                 name: "RolesAndCollaborators",
                 url: "rolesAndCollaborators",
                 defaults: new { controller = "InicioS", action = "RolesAndCollaborators", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
-                name: "RequirementView",
-                url: "requirementView",
-                defaults: new { controller = "InicioS", action = "RequirementView", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
@@ -65,6 +53,18 @@ namespace Reques
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "InicioS", action = "Iniciar", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "ProjectRequirements",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "InicioS", action = "ProjectRequirements", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "RequirementView",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "InicioS", action = "RequirementView", id = UrlParameter.Optional }
             );
         }
     }

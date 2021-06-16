@@ -17,12 +17,11 @@ namespace Reques.Models
         public Mprojects(String correo)
         {
             BuscarProyectos(correo);
-
         }
 
         public void BuscarProyectos(String correo)
         {
-            using (SqlConnection conn = new SqlConnection("Server=LAPTOP-B9MVKMJ5;Database=Reques;User Id=Usuario;Password=1324;"))
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;"))
             {
                 conn.Open();
                 SqlCommand comando = new SqlCommand("Exec Proyectos_Usuario '" + correo + "'", conn);

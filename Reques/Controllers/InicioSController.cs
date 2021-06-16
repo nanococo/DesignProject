@@ -25,16 +25,18 @@ namespace Reques.Controllers
 
         
 
-        public ActionResult ProjectRequirements() {
-            return View();
+        public ActionResult ProjectRequirements(int id) {
+            var requirementData = new RequirementData(id);
+            return View(requirementData);
         }
 
         public ActionResult RolesAndCollaborators() {
             return View();
         }
 
-        public ActionResult RequirementView() {
-            return View();
+        public ActionResult RequirementView(int id) {
+            var concreteRequirement = new ConcreteRequirements(id);
+            return View(concreteRequirement);
         }
 
         public ActionResult ActivityView() {
@@ -63,6 +65,13 @@ namespace Reques.Controllers
                 return Content("Ya existe este correo registrado ");
             }
 
+        }
+
+        public ActionResult InsertaR(String name, String description, String radio, String projectId) {
+            var b = new Base();
+
+            b.RegistrarRequerimiento(name, description, radio, projectId);
+            return Content("1");
         }
 
         public ActionResult InsertaP(String name, String description) {
