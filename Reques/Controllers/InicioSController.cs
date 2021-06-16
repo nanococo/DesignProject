@@ -11,7 +11,10 @@ namespace Reques.Controllers
     {
         // GET: InicioS
 
-        public ActionResult Iniciar(){
+        public ActionResult Iniciar()
+        {
+            Base b = new Base();
+            //var n = new Inicio() { Nombre = "Jocxan", Contra = "123" };
             var n = new PageHeader() { header = "Login" };
             return View(n);
         }
