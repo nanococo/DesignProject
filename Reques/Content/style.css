@@ -1,6 +1,10 @@
-﻿.modalPage {
-    background-color: #90c2ff;
+﻿body {
     font-family: Arial;
+}
+
+
+.modalPage {
+    background-color: #90c2ff;
 }
 
 li {
@@ -58,7 +62,7 @@ input[type=text], select {
     margin-top: 5%
 }
 
-input[type=submit] {
+input[type=button], input[type=submit] {
     width: 30%;
     background-color: #0052CC;
     color: white;
@@ -80,4 +84,38 @@ input[type=submit] {
 .form-header {
     vertical-align: text-top;
     padding: 6%;
+}
+
+.test {
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.innerDiv {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: #F6F6F6;
+    border-radius: 4px;
+    width: 18%;
+    height: 400px;
+    left: 20%;
+    float: left;
+    text-align: center;
+    margin-left: 5%;
+}
+
+.ticketDiv {
+    background-color: white;
+    border-radius: 6px;
+    margin: 10px 10px 10px 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.projectRequirementsHeader {
+    color: #3C3C3C;
+    margin-top: 5%;
+    margin-left: 5%;
 }

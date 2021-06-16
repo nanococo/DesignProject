@@ -11,14 +11,18 @@ namespace Reques.Controllers
     {
         // GET: InicioS
 
-        public ActionResult Iniciar()
-        {
+        public ActionResult Iniciar(){
             var n = new PageHeader() { header = "Login" };
             return View(n);
         }
 
         public ActionResult SignUp() {
             var n = new PageHeader() { header = "Sign Up" };
+            return View(n);
+        }
+
+        public ActionResult ProjectRequirements() {
+            var n = new PageHeader() { header = "Project Requirements" };
             return View(n);
         }
     }
