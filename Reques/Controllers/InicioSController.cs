@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Reques.Controllers
 {
+    
     public class InicioSController : Controller
     {
         // GET: InicioS
@@ -14,8 +15,7 @@ namespace Reques.Controllers
 
         public ActionResult Iniciar()
         {
-            //Base b = new Base();
-            //var n = new Inicio() { Nombre = "Jocxan", Contra = "123" };
+
             return View();
         }
 
@@ -23,11 +23,36 @@ namespace Reques.Controllers
             return View();
         }
 
-        public ActionResult InsertaU(String name, String lastname, String email,String password)
+        
+
+        public ActionResult ProjectRequirements() {
+            return View();
+        }
+
+        public ActionResult RolesAndCollaborators() {
+            return View();
+        }
+
+        public ActionResult RequirementView() {
+            return View();
+        }
+
+        public ActionResult ActivityView() {
+            return View();
+        }
+
+        public ActionResult Projects() {
+
+            var n = new Mprojects(CorreoN);
+
+            return View(n);
+        }
+
+        public ActionResult InsertaU(String name, String lastname, String email, String password)
         {
             var b = new Base();
 
-            int r= b.RegistrarUsuario(name, lastname, email, password);
+            int r = b.RegistrarUsuario(name, lastname, email, password);
             if (r == 1)
             {
                 return Content("1");
@@ -37,7 +62,7 @@ namespace Reques.Controllers
             {
                 return Content("Ya existe este correo registrado ");
             }
-            
+
         }
 
         public ActionResult InsertaP(String name, String description) {

@@ -13,11 +13,7 @@ namespace Reques
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "InicioS", action = "Iniciar", id = UrlParameter.Optional }
-            );
+            
 
             routes.MapRoute(
                 name: "SignUp",
@@ -65,6 +61,12 @@ namespace Reques
                 name: "CreateRequirement",
                 url: "createRequirement",
                 defaults: new { controller = "InicioS", action = "CreateRequirement", id = UrlParameter.Optional }
+            };
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "InicioS", action = "Iniciar", id = UrlParameter.Optional }
             );
         }
     }

@@ -138,7 +138,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Base.cs" />
-    <Compile Include="Models\Inicio.cs" />
+    <Compile Include="Models\Mprojects.cs" />
     <Compile Include="Models\SqlDatabaseSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
