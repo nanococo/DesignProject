@@ -12,10 +12,11 @@
 <body>
     <div class="body-content">
         <ul>
-            <li><img src="~/Content/images/logo_transparent.png"/></li>
+            <li><img src="~/Content/images/logo_transparent.png" /></li>
             <li class="header"><b>Projects</b></li>
             <li class="header"><a href="/InicioS/CreateProject">Create Project</a></li>
-            <li class="header"><a href="/InicioS/CreateRequirements">Create Requirement</a></li>
+            <li class="header"><a href="/InicioS/CreateRequirement">Create Requirement</a></li>
+            <li class="header"><a href="/InicioS/CreateActivity">Create Activity</a></li>
         </ul>
     </div>
 
@@ -39,13 +40,13 @@
 
     <div class="projectRequirementsDiv">
 
-        <div class="projectTicketDiv" onclick="location.href='/InicioS/RequirementView';">
-            <p>Ticket 1</p>
-        </div>
+        @for (int index = 0; index < Model.actividades.Count; index++) {
+            var l = Model.actividades[index];
 
-        <div class="projectTicketDiv" onclick="location.href='/InicioS/RequirementView';">
-            <p>Ticket 1</p>
-        </div>
+            <div class="projectTicketDiv" onclick="location.href='/InicioS/ActivityView/@l[1]';">
+                <p>@l[0]</p>
+            </div>
+        }
 
     </div>
 

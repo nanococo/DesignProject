@@ -17,6 +17,7 @@ namespace Reques.Models
         public Mprojects(String correo)
         {
             BuscarProyectos(correo);
+            buscarActividadPorUsuario(correo);
         }
 
         public void BuscarProyectos(String correo)
@@ -43,12 +44,31 @@ namespace Reques.Models
 
 
                 }
-
-                contador = 3;
-                comando = new SqlCommand("Exec Proyectos_Usuario '" + correo + "'", conn);
-
             }
 
+        }
+
+        public void buscarActividadPorUsuario(String correo) {
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+                conn.Open();
+                SqlCommand comando = new SqlCommand("Exec Actividades_Usuario '" + correo + "'", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                String nombre = "";
+                int id = 0;
+                int contador = 4;
+                while (m.Read() && contador > 0) {
+                    nombre = (String)m["Nombre"];
+                    id = (int)m["ID"];
+
+                    var actividad = new ArrayList() { nombre, id };
+                    actividades.Add(actividad);
+
+                    contador--;
+
+                }
+            }
         }
     }
 }

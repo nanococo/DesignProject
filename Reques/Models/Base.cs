@@ -86,6 +86,16 @@ namespace Reques.Models
 
         }
 
+        public void registrarUsuarioActividad(int correoN, int x) {
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+                conn.Open();
+                SqlCommand comando = new SqlCommand("Exec Inserta_Usuarios_X_Actividad " + correoN + ", " + x , conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+                conn.Close();
+            }
+        }
+
         public void RegistrarProyecto(String name, String description) {
             DateTime myDateTime = DateTime.Now;
             string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
@@ -144,6 +154,59 @@ namespace Reques.Models
 
                 SqlDataReader m = comando.ExecuteReader();
                 conn.Close();
+            }
+        }
+
+        public void RegistrarActividad(String name, String description, String prority, String requirementId) {
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+                conn.Open();
+                SqlCommand comando = new SqlCommand("Exec Inserta_Actividades 1, " + requirementId + ", " + prority + ", '" + name + "', '" + description + "', '"+ sqlFormattedDate+"'", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+                conn.Close();
+            }
+        }
+
+        public int ultimaActividad() {
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+
+
+                conn.Open();
+                SqlCommand comando = new SqlCommand("Exec Ultima_Actividad", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                int r = 0;
+                while (m.Read()) {
+                    r = (int)m["ID"];
+
+                }
+
+                conn.Close();
+                return r;
+            }
+        }
+
+        public int getUserId(String mail, int projectId) {
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+
+
+                conn.Open();
+                SqlCommand comando = new SqlCommand("Exec Obtiene_ID '"+mail+"', "+projectId, conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                int r = 0;
+                while (m.Read()) {
+                    r = (int)m["ID"];
+
+                }
+
+                conn.Close();
+                return r;
             }
         }
 

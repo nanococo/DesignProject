@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "CreateActivity";
+    Layout = "~/Views/Shared/_InicioN.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create Activity</title>
+</head>
+<body class="modalPage">
+    <div class="body-content">
+        <ul>
+            <li><img src="~/Content/images/logo_transparent.png" /></li>
+            <li class="header"><b>Create Requirement</b></li>
+        </ul>
+
+    </div>
+
+    <div id="parent">
+        <form id="form_login">
+
+            <div class="form-header">
+                <h2><b>Create Activity</b></h2>
+            </div>
+
+            <div class="form-item">
+                <label for="fname">Name</label><br />
+                <input type="text" id="fname" name="name" placeholder="Name.."><br />
+            </div>
+
+            <div class="form-item">
+                <label for="pname">Description</label><br />
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </div>
+
+            <div class="form-item">
+                <label for="fname">Prioridad</label><br />
+                <input type="text" id="fname" name="prority" placeholder="Prioridad.."><br />
+            </div>
+
+            <div class="form-item">
+                <label for="fname">Id Requerimiento</label><br />
+                <input type="text" id="fname" name="requirementId" placeholder="Id.."><br />
+            </div>
+
+            <input class="loginAndSignUpButtons" type="submit" value="Create">
+        </form>
+    </div>
+
+    @section scripts {
+        <script>
+        $(document).ready(function () {
+            $("#form_login").submit(function (e) {
+                e.preventDefault();
+                url = "@Url.Content("~/InicioS/InsertaA")"
+                parametros = $(this).serialize();
+
+                $.post(url, parametros, function (data) {
+                    if (data == "1") {
+                        document.location.href = "@Url.Content("~/InicioS/Projects")"
+                    }
+                    else {
+                        alert(data)
+                    }
+
+                })
+
+
+            })
+        })
+        </script> }
+
+</body>
+</html>
+

@@ -138,6 +138,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Base.cs" />
+    <Compile Include="Models\ConcreteActivity.cs" />
     <Compile Include="Models\ConcreteRequirements.cs" />
     <Compile Include="Models\Mprojects.cs" />
     <Compile Include="Models\RequirementData.cs" />
@@ -192,6 +193,7 @@
     <Content Include="Views\InicioS\Projects.cshtml" />
     <Content Include="Views\InicioS\CreateProject.cshtml" />
     <Content Include="Views\InicioS\CreateRequirement.cshtml" />
+    <Content Include="Views\InicioS\CreateActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

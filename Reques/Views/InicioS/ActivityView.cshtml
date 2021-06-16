@@ -1,4 +1,5 @@
-﻿
+﻿@model Reques.Models.ConcreteActivity
+
 @{
     ViewBag.Title = "ActivityView";
     Layout = "~/Views/Shared/_InicioN.cshtml";
@@ -13,7 +14,7 @@
     <div class="body-content">
         <ul>
             <li><img src="~/Content/images/logo_transparent.png" /></li>
-            <li class="header"><b>Activity</b></li>
+            <li class="header"><b>@Model.actividad[0][0]</b></li>
         </ul>
 
     </div>
@@ -21,24 +22,11 @@
     <div style="width: 100%; margin-top: 100px">
         <div class="requirementDivLeft">
             <p><b>Description</b></p>
-            <p>
-                Como parte del trabajo https://builderhomesite.atlassian.net/browse/BDXAUTO-5082, debemos asegurarnos de que, después de enviar el formulario de folleto de CTA, el usuario no reciba el correo electrónico del folleto.
+            <p>@Model.actividad[0][1]</p>
 
-                Verifique esta validación en:
-
-                Paso 6 del caso de prueba https://builderhomesite.testrail.net/index.php?/cases/view/963969
-            </p>
-
-            <p><b>Comments</b></p>
-            <p>
-                Hola equipo, terminé de refactorizar la herramienta de correo electrónico para verificar que no llegue un correo electrónico. A continuación, se muestra un ejemplo de un caso de prueba actualizado:
-            </p>
         </div>
         <div class="requirementDivRight">
             <input class="loginAndSignUpButtons" type="button" value="Progress">
-            <p><b>Assignee</b></p>
-            <p><b>Reporter</b></p>
-
         </div>
     </div>
 

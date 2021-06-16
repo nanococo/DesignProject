@@ -10,12 +10,17 @@ namespace Reques.Controllers
     
     public class InicioSController : Controller
     {
-        // GET: InicioS
-        private String CorreoN = "sebas_alpizar@hotmail.com";
+
+        internal class Global {
+            public static String CorreoN = "";
+        }
+
+
+            // GET: InicioS
+            //private String CorreoN = "sebas_alpizar@hotmail.com";
 
         public ActionResult Iniciar()
         {
-
             return View();
         }
 
@@ -39,13 +44,14 @@ namespace Reques.Controllers
             return View(concreteRequirement);
         }
 
-        public ActionResult ActivityView() {
-            return View();
+        public ActionResult ActivityView(int id) {
+            var concreteActivity = new ConcreteActivity(id);
+            return View(concreteActivity);
         }
 
         public ActionResult Projects() {
 
-            var n = new Mprojects(CorreoN);
+            var n = new Mprojects(Global.CorreoN);
 
             return View(n);
         }
@@ -78,7 +84,21 @@ namespace Reques.Controllers
             var b = new Base();
             b.RegistrarProyecto(name, description);
             int x = b.getLatProjectId();
-            b.Inserta_Proyectos_X_Usuarios(CorreoN, x);
+            b.Inserta_Proyectos_X_Usuarios(Global.CorreoN, x);
+            return Content("1");
+        }
+
+        public ActionResult InsertaA(String name, String description, String prority, String requirementId) {
+            var b = new Base();
+
+            b.RegistrarActividad(name, description, prority, requirementId);
+
+            int projectId = b.getLatProjectId();
+            int userId = b.getUserId(Global.CorreoN, projectId);
+
+            int x = b.ultimaActividad();
+            b.registrarUsuarioActividad(userId, x);
+
             return Content("1");
         }
 
@@ -89,6 +109,7 @@ namespace Reques.Controllers
             int r = b.BuscarUsuario(username, password);
             if (r == 1)
             {
+                Global.CorreoN = username;
                 return Content("1");
             }
 
@@ -104,6 +125,10 @@ namespace Reques.Controllers
         }
 
         public ActionResult CreateRequirement() {
+            return View();
+        }
+
+        public ActionResult CreateActivity() {
             return View();
         }
     }

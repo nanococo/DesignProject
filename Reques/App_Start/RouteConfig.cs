@@ -26,12 +26,6 @@ namespace Reques
             );
 
             routes.MapRoute(
-                name: "ActivityView",
-                url: "activityView",
-                defaults: new { controller = "InicioS", action = "ActivityView", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
                 name: "Projects",
                 url: "projects",
                 defaults: new { controller = "InicioS", action = "Projects", id = UrlParameter.Optional }
@@ -50,6 +44,12 @@ namespace Reques
             );
 
             routes.MapRoute(
+                name: "CreateActivity",
+                url: "createActivity",
+                defaults: new { controller = "InicioS", action = "CreateActivity", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "InicioS", action = "Iniciar", id = UrlParameter.Optional }
@@ -65,6 +65,12 @@ namespace Reques
                 name: "RequirementView",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "InicioS", action = "RequirementView", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "ActivityView",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "InicioS", action = "ActivityView", id = UrlParameter.Optional }
             );
         }
     }

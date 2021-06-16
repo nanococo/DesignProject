@@ -16,7 +16,7 @@ namespace Reques.Models {
         public ConcreteRequirements(int requirementId) {
             this.requirementId = requirementId;
             buscarDataDeRequerimiento();
-            //buscarActividades();
+            buscarActividades();
         }
 
         public void buscarDataDeRequerimiento() {
@@ -39,6 +39,30 @@ namespace Reques.Models {
 
                     var requerimientoD = new ArrayList() { nombre, description, id };
                     requerimiento.Add(requerimientoD);
+
+                    contador--;
+                }
+            }
+        }
+
+        public void buscarActividades() {
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec Busca_Actividades_Requerimientos " + requirementId, conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                String nombre = "";
+                int id = 0;
+                int contador = 4;
+                while (m.Read() && contador > 0) {
+
+                    nombre = (String)m["Nombre"];
+                    id = (int)m["ID"];
+
+                    var activity = new ArrayList() { nombre, id };
+                    actividades.Add(activity);
 
                     contador--;
                 }

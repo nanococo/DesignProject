@@ -29,16 +29,21 @@
 
         </div>
         <div class="requirementDivRight">
-            <input class="loginAndSignUpButtons" type="button" value="Progress">
-            <p><b>Assignee</b></p>
-            <p><b>Reporter</b></p>
+            <input class="loginAndSignUpButtons" type="button" value="In Progress">
+            <br/>
+            <br/>
 
             <div class="activityDiv">
                 <p>Activities</p>
 
-                <div class="ticketDiv" onclick="location.href='/InicioS/ActivityView';">
-                    <p>Ticket 1</p>
-                </div>
+                @for (int index = 0; index < Model.actividades.Count; index++) {
+                    var l = Model.actividades[index];
+
+                    <div class="ticketDiv" onclick="location.href='/InicioS/ActivityView/@l[1]';">
+                        <p>@l[0]</p>
+                    </div>
+                }
+
             </div>
         </div>
     </div>
