@@ -13,9 +13,12 @@
 </head>
 <body>
 
+
     <div class="projectRequirementsHeader">
+        <input class="rolesButton" type="button" value="Roles" onclick="location.href='/InicioS/RolesAndCollaborators';">
         <h2>Nombre Proyecto</h2>
         <h4>Version 1.0</h4>
+
     </div>
 
     <div class="test">
@@ -24,11 +27,12 @@
             <p>Ready for Development</p>
 
             @for (int index = 0; index < 4; index++) {
-                <div class="ticketDiv">
+                <div class="ticketDiv" onclick="location.href='/InicioS/RequirementView';">
                     <p>Ticket @index</p>
                 </div>
 
             }
+
         </div>
 
         <div class="innerDiv">

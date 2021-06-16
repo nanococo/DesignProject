@@ -171,6 +171,7 @@
     <Content Include="Views\InicioS\SignUp.cshtml" />
     <Content Include="Views\InicioS\ProjectRequirements.cshtml" />
     <Content Include="Views\InicioS\RolesAndCollaborators.cshtml" />
+    <Content Include="Views\InicioS\RequirementView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

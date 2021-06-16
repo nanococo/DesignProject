@@ -25,5 +25,17 @@ namespace Reques.Controllers
             var n = new PageHeader() { header = "Project Requirements" };
             return View(n);
         }
+
+        public ActionResult RolesAndCollaborators() {
+            var n = new PageHeader() { header = "Roles and Collaborators" };
+            return View(n);
+        }
+
+        public ActionResult RequirementView() {
+            var n = new PageHeader() { header = "Requirement" };
+            return View(n);
+        }
+
+
     }
 } 

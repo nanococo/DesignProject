@@ -30,6 +30,18 @@ namespace Reques
                 url: "projectRequirements",
                 defaults: new { controller = "InicioS", action = "ProjectRequirements", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "RolesAndCollaborators",
+                url: "rolesAndCollaborators",
+                defaults: new { controller = "InicioS", action = "RolesAndCollaborators", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "RequirementView",
+                url: "requirementView",
+                defaults: new { controller = "InicioS", action = "RequirementView", id = UrlParameter.Optional }
+            );
         }
     }
 }
