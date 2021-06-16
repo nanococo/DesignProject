@@ -90,26 +90,6 @@ namespace Reques.Controllers
 
         }
 
-        public ActionResult ProjectRequirements() {
-            return View();
-        }
-
-        public ActionResult RolesAndCollaborators() {
-            return View();
-        }
-
-        public ActionResult RequirementView() {
-            return View();
-        }
-
-        public ActionResult ActivityView() {
-            return View();
-        }
-
-        public ActionResult Projects() {
-            return View();
-        }
-
         public ActionResult CreateProject() {
             return View();
         }
