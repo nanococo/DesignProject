@@ -39,9 +39,33 @@
                 <p>Don't have an account? <a href="/InicioS/SignUp">Sign Up Here</a></p>
             </div>
 
-            <input class="loginAndSignUpButtons" type="button" value="Login" onclick="location.href='/InicioS/ProjectRequirements';">
+            <input class="loginAndSignUpButtons" type="submit" value="Login">
         </form>
     </div>
+
+    @section scripts {
+        <script>
+        $(document).ready(function () {
+            $("#form_login").submit(function (e) {
+                e.preventDefault();
+                url = "@Url.Content("~/InicioS/IniciaSesion")"
+                parametros = $(this).serialize();
+
+                $.post(url, parametros, function (data) {
+                    if (data == "1") {
+                        document.location.href = "@Url.Content("~/InicioS/RequirementView")"
+                    }
+                    else {
+                        alert(data)
+
+                    }
+
+                })
+
+
+            })
+        })
+        </script> }
 
 
 </body>

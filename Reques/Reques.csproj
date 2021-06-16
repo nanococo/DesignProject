@@ -138,6 +138,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Base.cs" />
+    <Compile Include="Models\PageHeader.cs" />
     <Compile Include="Models\Inicio.cs" />
     <Compile Include="Models\SqlDatabaseSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,8 +187,6 @@
     <Content Include="Views\InicioS\RequirementView.cshtml" />
     <Content Include="Views\InicioS\RolesAndCollaborators.cshtml" />
     <Content Include="Views\InicioS\SignUp.cshtml" />
-    <Content Include="Views\InicioS\ActivityView.cshtml" />
-    <Content Include="Views\InicioS\Projects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

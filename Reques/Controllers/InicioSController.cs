@@ -22,6 +22,40 @@ namespace Reques.Controllers
             return View();
         }
 
+        public ActionResult InsertaU(String name, String lastname, String email,String password)
+        {
+            var b = new Base();
+
+            int r= b.RegistrarUsuario(name, lastname, email, password);
+            if (r == 1)
+            {
+                return Content("1");
+            }
+
+            else
+            {
+                return Content("Ya existe este correo registrado ");
+            }
+            
+        }
+
+        public ActionResult IniciaSesion(String username, String password)
+        {
+            var b = new Base();
+
+            int r = b.BuscarUsuario(username, password);
+            if (r == 1)
+            {
+                return Content("1");
+            }
+
+            else
+            {
+                return Content("No coinciden los datos, verifique que el correo y contraseña estén corretamente ");
+            }
+
+        }
+
         public ActionResult ProjectRequirements() {
             return View();
         }
