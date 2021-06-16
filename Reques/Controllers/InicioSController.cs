@@ -13,15 +13,48 @@ namespace Reques.Controllers
 
         public ActionResult Iniciar()
         {
-            //Base b = new Base();
-            //var n = new Inicio() { Nombre = "Jocxan", Contra = "123" };
             var n = new PageHeader() { header = "Login" };
             return View(n);
         }
 
         public ActionResult SignUp() {
             var n = new PageHeader() { header = "Sign Up" };
+
             return View(n);
+        }
+
+        public ActionResult InsertaU(String name, String lastname, String email,String password)
+        {
+            var b = new Base();
+
+            int r= b.RegistrarUsuario(name, lastname, email, password);
+            if (r == 1)
+            {
+                return Content("1");
+            }
+
+            else
+            {
+                return Content("Ya existe este correo registrado ");
+            }
+            
+        }
+
+        public ActionResult IniciaSesion(String username, String password)
+        {
+            var b = new Base();
+
+            int r = b.BuscarUsuario(username, password);
+            if (r == 1)
+            {
+                return Content("1");
+            }
+
+            else
+            {
+                return Content("No coinciden los datos, verifique que el correo y contraseña estén corretamente ");
+            }
+
         }
 
         public ActionResult ProjectRequirements() {
@@ -35,6 +68,7 @@ namespace Reques.Controllers
         }
 
         public ActionResult RequirementView() {
+
             var n = new PageHeader() { header = "Requirement" };
             return View(n);
         }

@@ -22,7 +22,7 @@
                 <label for="fname">Username</label><br />
                 <input type="text" id="fname" name="username" placeholder="Username.."><br />
             </div>
-            
+
             <div class="form-item">
                 <label for="lname">Password</label><br />
                 <input type="text" id="lname" name="password" placeholder="Password.."><br />
@@ -32,9 +32,33 @@
                 <p>Don't have an account? <a href="/InicioS/SignUp">Sign Up Here</a></p>
             </div>
 
-            <input class="loginAndSignUpButtons" type="button" value="Login" onclick="location.href='/InicioS/ProjectRequirements';">
+            <input class="loginAndSignUpButtons" type="submit" value="Login">
         </form>
     </div>
+
+    @section scripts {
+        <script>
+        $(document).ready(function () {
+            $("#form_login").submit(function (e) {
+                e.preventDefault();
+                url = "@Url.Content("~/InicioS/IniciaSesion")"
+                parametros = $(this).serialize();
+
+                $.post(url, parametros, function (data) {
+                    if (data == "1") {
+                        document.location.href = "@Url.Content("~/InicioS/RequirementView")"
+                    }
+                    else {
+                        alert(data)
+
+                    }
+
+                })
+
+
+            })
+        })
+        </script> }
 
 
 </body>

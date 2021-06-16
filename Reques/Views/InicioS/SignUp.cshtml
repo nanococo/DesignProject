@@ -1,7 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_InicioN.cshtml";
+
+
 }
 
 <!DOCTYPE html>
@@ -26,8 +27,13 @@
             </div>
 
             <div class="form-item">
-                <label for="fname">Username</label><br />
-                <input type="text" id="fname" name="username" placeholder="Username.."><br />
+                <label for="pname">Last Name</label><br />
+                <input type="text" id="pname" name="lastname" placeholder="Last Name.."><br />
+            </div>
+
+            <div class="form-item">
+                <label for="uname">Email</label><br />
+                <input type="text" id="uname" name="email" placeholder="Email.."><br />
             </div>
 
             <div class="form-item">
@@ -38,6 +44,29 @@
             <input class="loginAndSignUpButtons" type="submit" value="Sign Up">
         </form>
     </div>
+    @section scripts {
+        <script>
+        $(document).ready(function () {
+            $("#form_login").submit(function (e) {
+                e.preventDefault();
+                url = "@Url.Content("~/InicioS/InsertaU")"
+                parametros = $(this).serialize();
+
+                $.post(url, parametros, function (data) {
+                    if (data == "1") {
+                        document.location.href = "@Url.Content("~/InicioS/Iniciar")"
+                    }
+                    else {
+                        alert(data)
+
+                    }
+
+                })
+
+
+            })
+        })
+        </script> }
 
 
 </body>
