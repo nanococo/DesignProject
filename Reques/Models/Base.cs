@@ -11,21 +11,21 @@ namespace Reques.Models
         SqlConnection conn;
 
         public Base() {
-            OpenSqlConnection();
+            //OpenSqlConnection();
         
         }
 
-        public void OpenSqlConnection()
+        public void OpenSqlConnection(String correo, int proyecto)
         {
             //"Server=LAPTOP-B9MVKMJ5,Authentication=Windows Authentication, Database=Reques"
             //using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;"))
             using (conn = new SqlConnection("Server=LAPTOP-B9MVKMJ5;Database=Reques;User Id=Usuario;Password=1324;"))
             {
                 conn.Open();
-                //SqlCommand comando = new SqlCommand("Exec Inserta_Usuarios 'jocxan', '2', '2','3'", conn);
+                SqlCommand comando = new SqlCommand("Exec Inserta_Proyectos_X_Usuarios '" +correo + "', "+proyecto+ ", 2", conn);
 
 
-                //SqlDataReader m = comando.ExecuteReader();
+                SqlDataReader m = comando.ExecuteReader();
 
                 /*
                 int r = 0;

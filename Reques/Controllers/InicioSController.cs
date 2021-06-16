@@ -7,14 +7,15 @@ using System.Web.Mvc;
 
 namespace Reques.Controllers
 {
+    
     public class InicioSController : Controller
     {
         // GET: InicioS
+        private String CorreoN = "jocxansandi7@gmail.com";
 
         public ActionResult Iniciar()
         {
-            //Base b = new Base();
-            //var n = new Inicio() { Nombre = "Jocxan", Contra = "123" };
+
             return View();
         }
 
@@ -22,39 +23,7 @@ namespace Reques.Controllers
             return View();
         }
 
-        public ActionResult InsertaU(String name, String lastname, String email,String password)
-        {
-            var b = new Base();
-
-            int r= b.RegistrarUsuario(name, lastname, email, password);
-            if (r == 1)
-            {
-                return Content("1");
-            }
-
-            else
-            {
-                return Content("Ya existe este correo registrado ");
-            }
-            
-        }
-
-        public ActionResult IniciaSesion(String username, String password)
-        {
-            var b = new Base();
-
-            int r = b.BuscarUsuario(username, password);
-            if (r == 1)
-            {
-                return Content("1");
-            }
-
-            else
-            {
-                return Content("No coinciden los datos, verifique que el correo y contraseña estén corretamente ");
-            }
-
-        }
+        
 
         public ActionResult ProjectRequirements() {
             return View();
@@ -73,7 +42,44 @@ namespace Reques.Controllers
         }
 
         public ActionResult Projects() {
-            return View();
+
+            var n = new Mprojects(CorreoN);
+
+            return View(n);
+        }
+
+        public ActionResult InsertaU(String name, String lastname, String email, String password)
+        {
+            var b = new Base();
+
+            int r = b.RegistrarUsuario(name, lastname, email, password);
+            if (r == 1)
+            {
+                return Content("1");
+            }
+
+            else
+            {
+                return Content("Ya existe este correo registrado ");
+            }
+
+        }
+
+        public ActionResult IniciaSesion(String username, String password)
+        {
+            var b = new Base();
+
+            int r = b.BuscarUsuario(username, password);
+            if (r == 1)
+            {
+                return Content("1");
+            }
+
+            else
+            {
+                return Content("No coinciden los datos, verifique que el correo y contraseña estén corretamente ");
+            }
+
         }
 
     }

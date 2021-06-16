@@ -1,4 +1,4 @@
-﻿
+﻿@model Reques.Models.Mprojects
 @{
     ViewBag.Title = "Projects";
     Layout = "~/Views/Shared/_InicioN.cshtml";
@@ -25,17 +25,17 @@
 
     <div class="projectImages">
 
-        <div class="projectDiv">
-        </div>
 
-        <div class="projectDiv">
-        </div>
 
-        <div class="projectDiv">
-        </div>
+        @for (int index = 0; index < Model.proyectos.Count; index++)
+        {
+            var l = Model.proyectos[index];
 
-        <div class="projectDiv">
-        </div>
+            <div class="projectDiv">
+                <a href="/InicioS/ProjectRequirements/@l[1]">Ver Proyecto</a>
+                <p>@l[0]</p>
+            </div>
+        }
 
     </div>
 
