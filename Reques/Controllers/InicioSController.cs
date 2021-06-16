@@ -39,6 +39,15 @@ namespace Reques.Controllers
             return View(n);
         }
 
+        public ActionResult ActivityView() {
+            var n = new PageHeader() { header = "Activity" };
+            return View(n);
+        }
+
+        public ActionResult Projects() {
+            var n = new PageHeader() { header = "Projects" };
+            return View(n);
+        }
 
     }
 } 

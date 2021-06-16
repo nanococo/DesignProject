@@ -149,16 +149,19 @@ input[type=text], select {
 }
 
 .requirementDivLeft {
-    width: 70%;
+    width: 60%;
     float: left;
     height: 500px;
-    padding: 5px 5px;
+    padding-left: 2%;
+    padding-right: 3%;
+    border-right: 1px solid gray;
 }
 
 .requirementDivRight {
-    width: 28%;
+    width: 25%;
     float: left;
     height: 500px;
+    padding-left: 5%
     
 }
 
@@ -171,4 +174,42 @@ input[type=text], select {
     height: 300px;
     text-align: center;
     margin-left: 5%;
+}
+
+.projectDiv {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: #F6F6F6;
+    border-radius: 4px;
+    width: 18%;
+    height: 100px;
+    left: 20%;
+    float: left;
+    text-align: center;
+    margin-left: 5%;
+}
+
+.projectImages {
+    margin-top: 3%;
+    width: 100%;
+    height: 200px;
+    border-bottom: 1px solid gray;
+}
+
+.projectRequirementsDiv {
+    width: 100%;
+    height: 400px;
+    padding-top: 2%;
+}
+
+.projectTicketDiv {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: #F6F6F6;
+    border-radius: 6px;
+    margin: 20px 20px 20px 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 25px;
+    cursor: pointer;
 }

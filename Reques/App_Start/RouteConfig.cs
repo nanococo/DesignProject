@@ -42,6 +42,18 @@ namespace Reques
                 url: "requirementView",
                 defaults: new { controller = "InicioS", action = "RequirementView", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "ActivityView",
+                url: "activityView",
+                defaults: new { controller = "InicioS", action = "ActivityView", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Projects",
+                url: "projects",
+                defaults: new { controller = "InicioS", action = "Projects", id = UrlParameter.Optional }
+            );
         }
     }
 }

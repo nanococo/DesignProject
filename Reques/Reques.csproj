@@ -183,6 +183,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_InicioN.cshtml" />
     <Content Include="Views\InicioS\Iniciar.cshtml" />
+    <Content Include="Views\InicioS\ProjectRequirements.cshtml" />
+    <Content Include="Views\InicioS\RequirementView.cshtml" />
+    <Content Include="Views\InicioS\RolesAndCollaborators.cshtml" />
+    <Content Include="Views\InicioS\SignUp.cshtml" />
+    <Content Include="Views\InicioS\ActivityView.cshtml" />
+    <Content Include="Views\InicioS\Projects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

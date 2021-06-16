@@ -17,7 +17,7 @@ namespace Reques.Models
         public void OpenSqlConnection()
         {
             //"Server=LAPTOP-B9MVKMJ5,Authentication=Windows Authentication, Database=Reques"
-            using (SqlConnection conn = new SqlConnection("Server=LAPTOP-B9MVKMJ5;Database=Reques;User Id=Usuario;Password=1324;"))
+            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;"))
             {
                 
                 SqlCommand comando = new SqlCommand("Exec Inserta_Usuarios 'jocxan', '2', '2','3'", conn);
