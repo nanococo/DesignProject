@@ -188,6 +188,8 @@
     <Content Include="Views\InicioS\SignUp.cshtml" />
     <Content Include="Views\InicioS\ActivityView.cshtml" />
     <Content Include="Views\InicioS\Projects.cshtml" />
+    <Content Include="Views\InicioS\CreateProject.cshtml" />
+    <Content Include="Views\InicioS\CreateRequirement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

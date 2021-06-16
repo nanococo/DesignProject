@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "CreateRequirement";
+    Layout = "~/Views/Shared/_InicioN.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create Requirement</title>
+</head>
+<body class="modalPage">
+    <div class="body-content">
+        <ul>
+            <li><img src="~/Content/images/logo_transparent.png" /></li>
+            <li class="header"><b>Create Requirement</b></li>
+        </ul>
+
+    </div>
+
+    <div id="parent">
+        <form id="form_login">
+
+            <div class="form-header">
+                <h2><b>Create Requirement</b></h2>
+            </div>
+
+            <div class="form-item">
+                <label for="fname">Name</label><br />
+                <input type="text" id="fname" name="name" placeholder="Name.."><br />
+            </div>
+
+            <div class="form-item">
+                <label for="pname">Description</label><br />
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </div>
+
+            <div class="form-item">
+                <label for="pname">Requirement Type</label><br />
+                <br />
+                <br />
+                <label class="container">
+                    Functional
+                    <input type="radio" checked="checked" name="radio" value="1">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Non Functional
+                    <input type="radio" name="radio" value="2">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <input class="loginAndSignUpButtons" type="submit" value="Create">
+        </form>
+    </div>
+
+</body>
+</html>

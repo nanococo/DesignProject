@@ -10,6 +10,7 @@ namespace Reques.Controllers
     public class InicioSController : Controller
     {
         // GET: InicioS
+        private String CorreoN = "sebas_alpizar@hotmail.com";
 
         public ActionResult Iniciar()
         {
@@ -37,6 +38,14 @@ namespace Reques.Controllers
                 return Content("Ya existe este correo registrado ");
             }
             
+        }
+
+        public ActionResult InsertaP(String name, String description) {
+            var b = new Base();
+            b.RegistrarProyecto(name, description);
+            int x = b.getLatProjectId();
+            b.Inserta_Proyectos_X_Usuarios(CorreoN, x);
+            return Content("1");
         }
 
         public ActionResult IniciaSesion(String username, String password)
@@ -76,5 +85,12 @@ namespace Reques.Controllers
             return View();
         }
 
+        public ActionResult CreateProject() {
+            return View();
+        }
+
+        public ActionResult CreateRequirement() {
+            return View();
+        }
     }
 } 

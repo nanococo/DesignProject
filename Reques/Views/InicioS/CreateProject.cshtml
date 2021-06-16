@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Iniciar";
+﻿
+@{
+    ViewBag.Title = "CreateProject";
     Layout = "~/Views/Shared/_InicioN.cshtml";
 }
 
@@ -8,47 +9,45 @@
 <html lang="es">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Create Project</title>
 </head>
 <body class="modalPage">
     <div class="body-content">
         <ul>
             <li><img src="~/Content/images/logo_transparent.png" /></li>
-            <li class="header"><b>Login</b></li>
+            <li class="header"><b>Create Project</b></li>
         </ul>
 
     </div>
 
     <div id="parent">
         <form id="form_login">
+
             <div class="form-header">
-                <h2><b>Sign In</b></h2>
+                <h2><b>Create Project</b></h2>
             </div>
 
             <div class="form-item">
-                <label for="fname">Username</label><br />
-                <input type="text" id="fname" name="username" placeholder="Username.."><br />
+                <label for="fname">Name</label><br />
+                <input type="text" id="fname" name="name" placeholder="Name.."><br />
             </div>
 
             <div class="form-item">
-                <label for="lname">Password</label><br />
-                <input type="text" id="lname" name="password" placeholder="Password.."><br />
+                <label for="pname">Description</label><br />
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
             </div>
 
-            <div>
-                <p>Don't have an account? <a href="/InicioS/SignUp">Sign Up Here</a></p>
-            </div>
-
-            <input class="loginAndSignUpButtons" type="submit" value="Login">
+            <input class="loginAndSignUpButtons" type="submit" value="Create">
         </form>
     </div>
+
 
     @section scripts {
         <script>
         $(document).ready(function () {
             $("#form_login").submit(function (e) {
                 e.preventDefault();
-                url = "@Url.Content("~/InicioS/IniciaSesion")"
+                url = "@Url.Content("~/InicioS/InsertaP")"
                 parametros = $(this).serialize();
 
                 $.post(url, parametros, function (data) {
@@ -57,7 +56,6 @@
                     }
                     else {
                         alert(data)
-
                     }
 
                 })
@@ -67,8 +65,6 @@
         })
         </script> }
 
-
 </body>
 </html>
-
 
