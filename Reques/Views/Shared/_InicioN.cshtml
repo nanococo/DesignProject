@@ -1,6 +1,4 @@
-﻿@model Reques.Models.PageHeader
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,15 +10,8 @@
 </head>
 
 <body>
-
-    <div class="container body-content">
-        <ul>
-            <li><img src="~/Content/images/logo_transparent.png" /></li>
-            <li class="header"><b>@Model.header</b></li>
-        </ul>
-        @RenderBody()
-    </div>
-
+    @RenderBody()
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

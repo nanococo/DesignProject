@@ -15,38 +15,31 @@ namespace Reques.Controllers
         {
             //Base b = new Base();
             //var n = new Inicio() { Nombre = "Jocxan", Contra = "123" };
-            var n = new PageHeader() { header = "Login" };
-            return View(n);
+            return View();
         }
 
         public ActionResult SignUp() {
-            var n = new PageHeader() { header = "Sign Up" };
-            return View(n);
+            return View();
         }
 
         public ActionResult ProjectRequirements() {
-            var n = new PageHeader() { header = "Project Requirements" };
-            return View(n);
+            return View();
         }
 
         public ActionResult RolesAndCollaborators() {
-            var n = new PageHeader() { header = "Roles and Collaborators" };
-            return View(n);
+            return View();
         }
 
         public ActionResult RequirementView() {
-            var n = new PageHeader() { header = "Requirement" };
-            return View(n);
+            return View();
         }
 
         public ActionResult ActivityView() {
-            var n = new PageHeader() { header = "Activity" };
-            return View(n);
+            return View();
         }
 
         public ActionResult Projects() {
-            var n = new PageHeader() { header = "Projects" };
-            return View(n);
+            return View();
         }
 
     }
