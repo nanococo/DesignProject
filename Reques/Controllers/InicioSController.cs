@@ -13,7 +13,7 @@ namespace Reques.Controllers
 
         public ActionResult Iniciar()
         {
-            Base b = new Base();
+            //Base b = new Base();
             //var n = new Inicio() { Nombre = "Jocxan", Contra = "123" };
             var n = new PageHeader() { header = "Login" };
             return View(n);
