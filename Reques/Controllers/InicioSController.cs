@@ -11,6 +11,9 @@ namespace Reques.Controllers
     public class InicioSController : Controller
     {
 
+        internal Base db = new Base();
+
+
         internal class Global {
             public static String CorreoN = "";
         }
