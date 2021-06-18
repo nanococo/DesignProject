@@ -1,4 +1,4 @@
-﻿
+﻿@model Reques.Models.CreateRequirementModel
 
 @{
     ViewBag.Title = "CreateRequirement";
@@ -29,17 +29,17 @@
             </div>
 
             <div class="form-item">
-                <label for="fname">Name</label><br />
+                <label for="fname"><b>Name</b></label><br />
                 <input type="text" id="fname" name="name" placeholder="Name.."><br />
             </div>
 
             <div class="form-item">
-                <label for="pname">Description</label><br />
+                <label for="pname"><b>Description</b></label><br />
                 <textarea id="description" name="description" rows="4" cols="50"></textarea>
             </div>
 
             <div class="form-item">
-                <label for="pname">Requirement Type</label><br />
+                <label for="pname"><b>Requirement Type</b></label><br />
                 <br />
                 <br />
                 <label class="container">
@@ -55,36 +55,60 @@
             </div>
 
             <div class="form-item">
-                <label for="fname">ProjectId</label><br />
-                <input type="text" id="fname" name="projectId" placeholder="Id.."><br />
+                <label for="pname"><b>Project</b></label><br />
+                <select name="projectId">
+
+                    @for (int index = 0; index < Model.projects.Count; index++) {
+                        var l = Model.projects[index];
+
+                        <option value="@l[0]">@l[1]</option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-item">
+                <label for="pname"><b>Assignee</b></label><br />
+                <select name="assignee">
+
+                    @for (int index = 0; index < Model.users.Count; index++) {
+                        var l = Model.users[index];
+
+                        <option value="@l[0]">@l[1]</option>
+                    }
+
+                </select>
             </div>
 
             <input class="loginAndSignUpButtons" type="submit" value="Create">
         </form>
     </div>
 
+
+
     @section scripts {
         <script>
-        $(document).ready(function () {
-            $("#form_login").submit(function (e) {
-                e.preventDefault();
-                url = "@Url.Content("~/InicioS/InsertaR")"
-                parametros = $(this).serialize();
+            $(document).ready(function () {
+                $("#form_login").submit(function (e) {
+                    e.preventDefault();
+                    url = "@Url.Content("~/InicioS/InsertaR")"
+                    parametros = $(this).serialize();
 
-                $.post(url, parametros, function (data) {
-                    if (data == "1") {
-                        document.location.href = "@Url.Content("~/InicioS/Projects")"
-                    }
-                    else {
-                        alert(data)
-                    }
+                    $.post(url, parametros, function (data) {
+                        if (data == "1") {
+                            document.location.href = "@Url.Content("~/InicioS/Projects")"
+                        }
+                        else {
+                            alert(data)
+                        }
+
+                    })
+
 
                 })
-
-
             })
-        })
-        </script> }
+        </script>
+        }
 
 </body>
 </html>

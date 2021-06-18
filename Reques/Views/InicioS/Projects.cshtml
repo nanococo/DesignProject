@@ -26,26 +26,50 @@
 
     <div class="projectImages">
 
-        @for (int index = 0; index < Model.proyectos.Count; index++)
-        {
-            var l = Model.proyectos[index];
+        @if (Model.proyectos.Count == 0) {
 
-            <div class="projectDiv">
-                <a href="/InicioS/ProjectRequirements/@l[1]">Ver Proyecto</a>
-                <p>@l[0]</p>
+            <div id="signUpMessage">
+                <p>There are no projects here</p><br/>
+                <input class="createBtnPrpl" type="button" value="Create Project" onclick="location.href='/InicioS/CreateProject';">
             </div>
+
+
+        } else {
+            for (int index = 0; index < Model.proyectos.Count; index++) {
+                var l = Model.proyectos[index];
+
+                <div class="projectDiv">
+                    <a href="/InicioS/ProjectRequirements/@l[1]">Ver Proyecto</a>
+                    <p>@l[0]</p>
+                </div>
+            }
         }
 
     </div>
 
     <div class="projectRequirementsDiv">
 
-        @for (int index = 0; index < Model.actividades.Count; index++) {
-            var l = Model.actividades[index];
+        <div class="projectRequirementsHeader">
+            <h2>My Activities</h2>
+        </div>
 
-            <div class="projectTicketDiv" onclick="location.href='/InicioS/ActivityView/@l[1]';">
-                <p>@l[0]</p>
+        @if (Model.actividades.Count == 0) {
+
+            <div id="signUpMessage">
+                <p>There are no activities yet</p><br/>
+                <input class="createBtnPrpl" type="button" value="Add Activities" onclick="location.href='/InicioS/RolesAndCollaborators';">
             </div>
+
+
+        } else {
+            for (int index = 0; index < Model.proyectos.Count; index++) {
+                var l = Model.actividades[index];
+
+                <div class="projectDiv">
+                    <a href="/InicioS/ProjectRequirements/@l[1]">Ver Proyecto</a>
+                    <p>@l[0]</p>
+                </div>
+            }
         }
 
     </div>

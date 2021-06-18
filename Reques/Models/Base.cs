@@ -1,212 +1,197 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Reques.Models
-{
-    public class Base
-    {
-        readonly string connectionString = "Server=192.168.39.199;Database=DesignBase;User Id=waifuBot;Password=pass1234;";
+namespace Reques.Models {
+    public class Base {
 
+        readonly string connectionString = "Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;";
 
-        public int signUp(string name, string lastName, string email, string password) {
-
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-                using (SqlCommand cmd = new SqlCommand("sp_insertUser", conn)) {
+        public int signUp(string name, string lastname, string email, string password) {
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                using (SqlCommand cmd = new SqlCommand("sp_insertUser", con)) {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
-                    cmd.Parameters.Add("@lastName", SqlDbType.VarChar).Value = lastName;
+                    cmd.Parameters.Add("@lastName", SqlDbType.VarChar).Value = lastname;
                     cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                     cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+
+                    var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    var result = returnParameter.Value;
+                    con.Close();
+                    return (int)result;               }
+            }
+        }
+
+        public List<ArrayList> getAllUsers() {
+
+            List<ArrayList> users = new List<ArrayList>();
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getAllUsers", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                String nombre = "";
+                int id = 0;
+                while (m.Read()) {
+
+                    nombre = (String)m["Name"];
+                    id = (int)m["ID"];
+
+                    var user = new ArrayList() { nombre, id };
+                    users.Add(user);
+                }
+            }
+            return users;
+        }
+
+        public List<ArrayList> getAllProjects() {
+            List<ArrayList> projects = new List<ArrayList>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getAllProjects", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                String nombre = "";
+                int id = 0;
+                while (m.Read()) {
+
+                    nombre = (String)m["Name"];
+                    id = (int)m["ID"];
+
+                    var project = new ArrayList() { nombre, id };
+                    projects.Add(project);
+                }
+            }
+
+            return projects;
+
+        }
+
+        public List<ArrayList> getAllRequirements() {
+            List<ArrayList> requirements = new List<ArrayList>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getAllRequirements", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                String nombre = "";
+                int id = 0;
+                while (m.Read()) {
+
+                    nombre = (String)m["Name"];
+                    id = (int)m["ID"];
+
+                    var requirement = new ArrayList() { nombre, id };
+                    requirements.Add(requirement);
+                }
+            }
+            return requirements;
+        }
+
+        public int signIn(string email, string password) {
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                using (SqlCommand cmd = new SqlCommand("sp_signIN", con)) {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Correo", SqlDbType.VarChar).Value = email;
+                    cmd.Parameters.Add("@Contra", SqlDbType.VarChar).Value = password;
+
+                    var returnParameter = cmd.Parameters.Add("@Respuesta", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    var result = returnParameter.Value;
+                    con.Close();
+                    return (int)result;
+                }
+            }
+        }
+
+        internal int insertRequirement(string name, string description, string correoN, string radio, string projectId, string assignee) {
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                using (SqlCommand cmd = new SqlCommand("sp_insertRequirement", con)) {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                    cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
+                    cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = correoN;
+                    cmd.Parameters.Add("@requirementType", SqlDbType.Int).Value = Int32.Parse(radio);
+                    cmd.Parameters.Add("@projectId", SqlDbType.Int).Value = Int32.Parse(projectId);
+                    cmd.Parameters.Add("@assigneeId", SqlDbType.Int).Value = Int32.Parse(assignee);
 
                     var returnParameter = cmd.Parameters.Add("@Return_Status", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
 
-                    conn.Open();
+                    con.Open();
                     cmd.ExecuteNonQuery();
                     var result = returnParameter.Value;
-                    conn.Close();
-
+                    con.Close();
                     return (int) result;
                 }
             }
         }
 
+        internal int insertActivity(string name, string description, string correoN, string asssigneeId, string requirementId) {
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                using (SqlCommand cmd = new SqlCommand("sp_insertActivity", con)) {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                    cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
+                    cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = correoN;
+                    cmd.Parameters.Add("@assigneeId", SqlDbType.Int).Value = Int32.Parse(asssigneeId);
+                    cmd.Parameters.Add("@requirementId", SqlDbType.Int).Value = Int32.Parse(requirementId);
 
+                    var returnParameter = cmd.Parameters.Add("@Return_Status", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
 
-        public int RegistrarUsuario(String nombre, String apellido, String correo, String contra)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString)) 
-            {
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Inserta_Usuarios '" + nombre + "', '" + apellido + "', '" + correo + "', '" + contra + "'", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-
-                int r = 0;
-                while (m.Read())
-                {
-                    r = (int)m["return_value"];
-                   
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    var result = returnParameter.Value;
+                    con.Close();
+                    return (int)result;
                 }
-
-                conn.Close();
-                return r;
             }
-
         }
 
-        public int BuscarUsuario(String correo, String contra)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString)) 
-            {
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Busca_Usuarios '" + correo + "', '" + contra + "'", conn);
+        internal int insertProject(string name, string description) {
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                using (SqlCommand cmd = new SqlCommand("sp_insertProject", con)) {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                SqlDataReader m = comando.ExecuteReader();
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                    cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
 
-                int r = 0;
-                while (m.Read())
-                {
-                    r = (int)m["return_value"];
+                    var returnParameter = cmd.Parameters.Add("@Return_Status", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
 
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    var result = returnParameter.Value;
+                    con.Close();
+                    return (int)result;
                 }
-
-                conn.Close();
-                return r;
-            }
-
-        }
-
-        public void registrarUsuarioActividad(int correoN, int x) {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Inserta_Usuarios_X_Actividad " + correoN + ", " + x , conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-                conn.Close();
             }
         }
-
-        public void RegistrarProyecto(String name, String description) {
-            DateTime myDateTime = DateTime.Now;
-            string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
-
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Inserta_Proyecto '" + 1 + "', '" + name + "', '" + description + "', '" + sqlFormattedDate + "'", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-
-                conn.Close();
-            }
-
-            
-        }
-
-        public int getLatProjectId() {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Ultimo_Proyecto", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-
-                int r = 0;
-                while (m.Read()) {
-                    r = (int)m["ID"];
-
-                }
-
-                conn.Close();
-                return r;
-            }
-        }
-
-        public void Inserta_Proyectos_X_Usuarios(String mail, int projectId) {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Inserta_Proyectos_X_Usuarios '" + mail + "', " + projectId + ", 2", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-                conn.Close();
-            }
-        }
-
-        public void RegistrarRequerimiento(String name, String description, String radio, String projectId) {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Inserta_Requerimiento 1, " + projectId + ", " + radio + ", '"+name+"', '"+description+"'", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-                conn.Close();
-            }
-        }
-
-        public void RegistrarActividad(String name, String description, String prority, String requirementId) {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-                DateTime myDateTime = DateTime.Now;
-                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
-
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Inserta_Actividades 1, " + requirementId + ", " + prority + ", '" + name + "', '" + description + "', '"+ sqlFormattedDate+"'", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-                conn.Close();
-            }
-        }
-
-        public int ultimaActividad() {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Ultima_Actividad", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-
-                int r = 0;
-                while (m.Read()) {
-                    r = (int)m["ID"];
-
-                }
-
-                conn.Close();
-                return r;
-            }
-        }
-
-        public int getUserId(String mail, int projectId) {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Obtiene_ID '"+mail+"', "+projectId, conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-
-                int r = 0;
-                while (m.Read()) {
-                    r = (int)m["ID"];
-
-                }
-
-                conn.Close();
-                return r;
-            }
-        }
-
 
 
     }

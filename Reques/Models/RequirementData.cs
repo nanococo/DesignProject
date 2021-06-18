@@ -11,7 +11,7 @@ namespace Reques.Models {
 
         public List<ArrayList> requerimientosDev = new List<ArrayList>();
 
-        public RequirementData(int id) {
+        public RequirementData(int id = 0) {
             this.ProjectId = id;
             buscarRequerimientosEnDev();
         }

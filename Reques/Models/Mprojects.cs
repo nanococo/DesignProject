@@ -9,6 +9,7 @@ namespace Reques.Models
 {
     public class Mprojects
     {
+        readonly string connectionString = "Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;";
  
         public List<ArrayList> proyectos = new List<ArrayList>();
         public List<ArrayList> actividades = new List<ArrayList>();
@@ -16,40 +17,12 @@ namespace Reques.Models
 
         public Mprojects(String correo)
         {
-            BuscarProyectos(correo);
-            buscarActividadPorUsuario(correo);
-        }
-
-        public void BuscarProyectos(String correo)
-        {
-            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;"))
-            {
-                conn.Open();
-                SqlCommand comando = new SqlCommand("Exec Proyectos_Usuario '" + correo + "'", conn);
-
-                SqlDataReader m = comando.ExecuteReader();
-
-                String n = "";
-                int id = 0;
-                int contador = 4;
-                while (m.Read() && contador > 0)
-                {
-                    n = (String)m["Nombre"];
-                    id = (int)m["ID"];
-
-                    var proyecto = new ArrayList() { n, id };
-                    proyectos.Add(proyecto);
-
-                    contador--;
-
-
-                }
-            }
-
+            proyectos = new Base().getAllProjects();
+            //buscarActividadPorUsuario(correo);
         }
 
         public void buscarActividadPorUsuario(String correo) {
-            using (SqlConnection conn = new SqlConnection("Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;")) {
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
                 conn.Open();
                 SqlCommand comando = new SqlCommand("Exec Actividades_Usuario '" + correo + "'", conn);
 
@@ -59,7 +32,7 @@ namespace Reques.Models
                 int id = 0;
                 int contador = 4;
                 while (m.Read() && contador > 0) {
-                    nombre = (String)m["Nombre"];
+                    nombre = (String)m["Name"];
                     id = (int)m["ID"];
 
                     var actividad = new ArrayList() { nombre, id };

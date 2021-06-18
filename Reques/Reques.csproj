@@ -140,6 +140,8 @@
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\ConcreteActivity.cs" />
     <Compile Include="Models\ConcreteRequirements.cs" />
+    <Compile Include="Models\CreateRequirementModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Mprojects.cs" />
     <Compile Include="Models\RequirementData.cs" />
     <Compile Include="Models\SqlDatabaseSetup.cs" />

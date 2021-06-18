@@ -22,9 +22,9 @@ namespace Reques.Controllers
             // GET: InicioS
             //private String CorreoN = "sebas_alpizar@hotmail.com";
 
-        public ActionResult Iniciar()
-        {
-            return View();
+        public ActionResult Iniciar(int id = 0){
+            var loginModel = new LoginModel(id);
+            return View(loginModel);
         }
 
         public ActionResult SignUp() {
@@ -53,9 +53,7 @@ namespace Reques.Controllers
         }
 
         public ActionResult Projects() {
-
             var n = new Mprojects(Global.CorreoN);
-
             return View(n);
         }
 
@@ -63,7 +61,7 @@ namespace Reques.Controllers
         {
             var b = new Base();
 
-            int r = b.RegistrarUsuario(name, lastname, email, password);
+            int r = b.signUp(name, lastname, email, password);
             if (r == 1)
             {
                 return Content("1");
@@ -76,40 +74,36 @@ namespace Reques.Controllers
 
         }
 
-        public ActionResult InsertaR(String name, String description, String radio, String projectId) {
-            var b = new Base();
-
-            b.RegistrarRequerimiento(name, description, radio, projectId);
-            return Content("1");
+        public ActionResult InsertaR(String name, String description, String radio, String projectId, String assignee) {
+            var x = db.insertRequirement(name, description, Global.CorreoN, radio, projectId, assignee);
+            if (x == 1) {
+                return Content("1");
+            } else {
+                return Content("Error al insertar requerimiento");
+            }
         }
 
         public ActionResult InsertaP(String name, String description) {
-            var b = new Base();
-            b.RegistrarProyecto(name, description);
-            int x = b.getLatProjectId();
-            b.Inserta_Proyectos_X_Usuarios(Global.CorreoN, x);
-            return Content("1");
+            int x = db.insertProject(name, description);
+            if (x == 1) {
+                return Content("1");
+            } else {
+                return Content("Error isnertando proyecto");
+            }
         }
 
-        public ActionResult InsertaA(String name, String description, String prority, String requirementId) {
-            var b = new Base();
+        public ActionResult InsertaA(String name, String description, String assigneeId, String requirementId) {
+            var x = db.insertActivity(name, description, Global.CorreoN, assigneeId, requirementId);
 
-            b.RegistrarActividad(name, description, prority, requirementId);
-
-            int projectId = b.getLatProjectId();
-            int userId = b.getUserId(Global.CorreoN, projectId);
-
-            int x = b.ultimaActividad();
-            b.registrarUsuarioActividad(userId, x);
-
-            return Content("1");
+            if (x == 1) {
+                return Content("1");
+            } else {
+                return Content("Error isnertando actividad");
+            }
         }
 
-        public ActionResult IniciaSesion(String username, String password)
-        {
-            var b = new Base();
-
-            int r = b.BuscarUsuario(username, password);
+        public ActionResult IniciaSesion(String username, String password) {
+            int r = db.signIn(username, password);
             if (r == 1)
             {
                 Global.CorreoN = username;
@@ -128,7 +122,8 @@ namespace Reques.Controllers
         }
 
         public ActionResult CreateRequirement() {
-            return View();
+            var n = new CreateRequirementModel();
+            return View(n);
         }
 
         public ActionResult CreateActivity() {
