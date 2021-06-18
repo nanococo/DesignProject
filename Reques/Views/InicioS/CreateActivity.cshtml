@@ -1,4 +1,5 @@
-﻿
+﻿@model Reques.Models.CreateActivityModel
+
 @{
     ViewBag.Title = "CreateActivity";
     Layout = "~/Views/Shared/_InicioN.cshtml";
@@ -38,13 +39,29 @@
             </div>
 
             <div class="form-item">
-                <label for="fname">Prioridad</label><br />
-                <input type="text" id="fname" name="prority" placeholder="Prioridad.."><br />
+                <label for="pname"><b>Requirement</b></label><br />
+                <select name="requirementId">
+
+                    @for (int index = 0; index < Model.requirements.Count; index++) {
+                        var l = Model.projects[index];
+
+                        <option value="@l[1]">@l[0]</option>
+                    }
+
+                </select>
             </div>
 
             <div class="form-item">
-                <label for="fname">Id Requerimiento</label><br />
-                <input type="text" id="fname" name="requirementId" placeholder="Id.."><br />
+                <label for="pname"><b>Assignee</b></label><br />
+                <select name="assignee">
+
+                    @for (int index = 0; index < Model.users.Count; index++) {
+                        var l = Model.users[index];
+
+                        <option value="@l[1]">@l[0]</option>
+                    }
+
+                </select>
             </div>
 
             <input class="loginAndSignUpButtons" type="submit" value="Create">

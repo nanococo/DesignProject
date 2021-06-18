@@ -9,7 +9,7 @@ using System.Web;
 namespace Reques.Models {
     public class Base {
 
-        readonly string connectionString = "Server=192.168.39.199;Database=Reques;User Id=waifuBot;Password=pass1234;";
+        readonly string connectionString = "Server=192.168.39.199;Database=DesignBase;User Id=waifuBot;Password=pass1234;";
 
         public int signUp(string name, string lastname, string email, string password) {
             using (SqlConnection con = new SqlConnection(connectionString)) {
@@ -30,6 +30,128 @@ namespace Reques.Models {
                     con.Close();
                     return (int)result;               }
             }
+        }
+
+        internal List<ArrayList> getActivity(int activityId) {
+            List<ArrayList> reqs = new List<ArrayList>();
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getActivityByID " + activityId, conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+
+                string nombre = "";
+                string description = "";
+                string req_Id = "";
+                string assignee = "";
+                string reporter = "";
+                string state = "";
+
+
+                int id = 0;
+                while (m.Read()) {
+
+                    id = (int)m["ID"];
+                    nombre = (string)m["Name"];
+                    description = (string)m["Description"];
+                    req_Id = Convert.ToString(m["req_Id"]);
+                    assignee = (string)m["AssigneeName"];
+                    reporter = (string)m["ReporterName"];
+                    state = (string)m["State"];
+
+                    var req = new ArrayList() { id, nombre, description, req_Id, assignee, reporter, state };
+                    reqs.Add(req);
+                }
+            }
+            return reqs;
+        }
+
+        public List<ArrayList> getRequirementActivities(int requirementId) {
+            List<ArrayList> reqs = new List<ArrayList>();
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getRequirementActivities " + requirementId, conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                String nombre = "";
+                int id = 0;
+                while (m.Read()) {
+
+                    nombre = (String)m["Name"];
+                    id = (int)m["ID"];
+
+                    var req = new ArrayList() { nombre, id };
+                    reqs.Add(req);
+                }
+            }
+            return reqs;
+        }
+
+        public List<ArrayList> getRequirementById(int requirementId) {
+            List<ArrayList> reqs = new List<ArrayList>();
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getRequirementByID " + requirementId, conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                
+                string nombre = "";
+                string description = "";
+                string project_Id = "";
+                string assignee = "";
+                string reporter = "";
+                string state = "";
+                string requirementType = "";
+
+
+                int id = 0;
+                while (m.Read()) {
+                    
+                    id = (int)m["ID"];
+                    nombre = (string)m["Name"];
+                    description = (string)m["Description"];
+                    project_Id = Convert.ToString(m["project_Id"]);
+                    assignee = (string)m["AssigneeName"];
+                    reporter = (string)m["ReporterName"];
+                    state = (string)m["State"];
+                    requirementType = (string)m["Requirement"];
+
+                    var req = new ArrayList() { id, nombre, description, project_Id, assignee, reporter, state, requirementType };
+                    reqs.Add(req);
+                }
+            }
+            return reqs;
+        }
+
+        public List<ArrayList> getReq(int projectId, int state) {
+            List<ArrayList> reqs = new List<ArrayList>();
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getProjectRequirements "+projectId+", "+state, conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+                String pName = "";
+                String nombre = "";
+                int id = 0;
+                while (m.Read()) {
+
+                    pName = (String)m["PName"];
+                    nombre = (String)m["Name"];
+                    id = (int)m["ID"];
+
+                    var req = new ArrayList() { pName, nombre, id };
+                    reqs.Add(req);
+                }
+            }
+            return reqs;
         }
 
         public List<ArrayList> getAllUsers() {

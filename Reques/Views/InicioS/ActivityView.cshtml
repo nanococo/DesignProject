@@ -11,22 +11,34 @@
     <title>Requirements</title>
 </head>
 <body>
+
     <div class="body-content">
         <ul>
             <li><img src="~/Content/images/logo_transparent.png" /></li>
-            <li class="header"><b>@Model.actividad[0][0]</b></li>
+            <li class="header"><b>Requirement @Model.actividad[0][3] - @Model.actividad[0][0]</b></li>
         </ul>
 
     </div>
 
     <div style="width: 100%; margin-top: 100px">
+
         <div class="requirementDivLeft">
-            <p><b>Description</b></p>
+            <h2><b>Name</b></h2><br />
             <p>@Model.actividad[0][1]</p>
+            <br />
+            <br />
+            <h2><b>Description</b></h2><br />
+            <p>@Model.actividad[0][2]</p>
 
         </div>
         <div class="requirementDivRight">
-            <input class="loginAndSignUpButtons" type="button" value="Progress">
+            <p><b>State: </b></p><br />
+            <input class="stateBtn" type="button" value="@Model.actividad[0][6]">
+            <br />
+            <br />
+            <p><b>Assignee: </b> @Model.actividad[0][4] </p><br />
+            <br />
+            <p><b>Reporter: </b> @Model.actividad[0][5] </p><br />
         </div>
     </div>
 

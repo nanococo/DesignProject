@@ -25,8 +25,16 @@
     <div class="projectRequirementsHeader">
         <input class="rolesButton" type="button" value="Roles" onclick="location.href='/InicioS/RolesAndCollaborators';">
         <input class="rolesButton" type="button" value="Projects" onclick="location.href='/InicioS/Projects';">
-        <h2>Proyecto @Model.requerimientosDev[0][0]</h2>
-        <h4>Version 1.0</h4>
+
+        @if (@Model.requerimientosIni.Count > 0) {
+            <h2>Proyecto @Model.requerimientosIni[0][0]</h2>
+            <h4>Version 1.0</h4>
+        } else {
+            <h2>Proyecto</h2>
+            <h4>Version 1.0</h4>
+        }
+
+
 
     </div>
 
@@ -35,26 +43,61 @@
         <div class="innerDiv">
             <p>Ready for Development</p>
 
-            @for (int index = 0; index < Model.requerimientosDev.Count; index++) {
-                var l = Model.requerimientosDev[index];
+            @if (@Model.requerimientosIni.Count > 0) {
+                for (int index = 0; index < Model.requerimientosIni.Count; index++) {
+                    var l = Model.requerimientosIni[index];
 
-                <div class="ticketDiv" onclick="location.href='/InicioS/RequirementView/@l[2]';">
-                    <p>@l[1]</p>
-                </div>
+                    <div class="ticketDiv" onclick="location.href='/InicioS/RequirementView/@l[2]';">
+                        <p>@l[1]</p>
+                    </div>
+                }
             }
 
         </div>
 
         <div class="innerDiv">
             <p>Development</p>
+
+            @if (@Model.requerimientosDev.Count > 0) {
+                for (int index = 0; index < Model.requerimientosDev.Count; index++) {
+                    var l = Model.requerimientosIni[index];
+
+                    <div class="ticketDiv" onclick="location.href='/InicioS/RequirementView/@l[2]';">
+                        <p>@l[1]</p>
+                    </div>
+                }
+            }
+
         </div>
 
         <div class="innerDiv">
             <p>Quality Control</p>
+
+            @if (@Model.requerimientosQA.Count > 0) {
+                for (int index = 0; index < Model.requerimientosQA.Count; index++) {
+                    var l = Model.requerimientosIni[index];
+
+                    <div class="ticketDiv" onclick="location.href='/InicioS/RequirementView/@l[2]';">
+                        <p>@l[1]</p>
+                    </div>
+                }
+            }
+
         </div>
 
         <div class="innerDiv">
             <p>Done</p>
+
+            @if (@Model.requerimientosDone.Count > 0) {
+                for (int index = 0; index < Model.requerimientosDone.Count; index++) {
+                    var l = Model.requerimientosIni[index];
+
+                    <div class="ticketDiv" onclick="location.href='/InicioS/RequirementView/@l[2]';">
+                        <p>@l[1]</p>
+                    </div>
+                }
+            }
+
         </div>
 
     </div>

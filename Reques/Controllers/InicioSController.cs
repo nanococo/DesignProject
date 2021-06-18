@@ -92,8 +92,8 @@ namespace Reques.Controllers
             }
         }
 
-        public ActionResult InsertaA(String name, String description, String assigneeId, String requirementId) {
-            var x = db.insertActivity(name, description, Global.CorreoN, assigneeId, requirementId);
+        public ActionResult InsertaA(String name, String description, String assignee, String requirementId) {
+            var x = db.insertActivity(name, description, Global.CorreoN, assignee, requirementId);
 
             if (x == 1) {
                 return Content("1");
@@ -127,7 +127,8 @@ namespace Reques.Controllers
         }
 
         public ActionResult CreateActivity() {
-            return View();
+            var n = new CreateActivityModel();
+            return View(n);
         }
     }
 } 
