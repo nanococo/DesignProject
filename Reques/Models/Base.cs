@@ -32,8 +32,34 @@ namespace Reques.Models {
             }
         }
 
-        internal List<ArrayList> getActivity(int activityId) {
-            List<ArrayList> reqs = new List<ArrayList>();
+        public List<ArrayList> getAllActivities() {
+
+            List<ArrayList> actvs = new List<ArrayList>();
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                conn.Open();
+
+                SqlCommand comando = new SqlCommand("Exec sp_getAllActivities ", conn);
+
+                SqlDataReader m = comando.ExecuteReader();
+
+
+                string nombre = "";
+                int id = 0;
+                while (m.Read()) {
+
+                    id = (int)m["ID"];
+                    nombre = (string)m["Name"];
+
+                    var req = new ArrayList() { id, nombre };
+                    actvs.Add(req);
+                }
+            }
+            return actvs;
+
+        }
+
+        public List<ArrayList> getActivity(int activityId) {
+            List<ArrayList> actvs = new List<ArrayList>();
             using (SqlConnection conn = new SqlConnection(connectionString)) {
                 conn.Open();
 
@@ -56,16 +82,16 @@ namespace Reques.Models {
                     id = (int)m["ID"];
                     nombre = (string)m["Name"];
                     description = (string)m["Description"];
-                    req_Id = Convert.ToString(m["req_Id"]);
+                    req_Id = Convert.ToString(m["reqId"]);
                     assignee = (string)m["AssigneeName"];
                     reporter = (string)m["ReporterName"];
                     state = (string)m["State"];
 
-                    var req = new ArrayList() { id, nombre, description, req_Id, assignee, reporter, state };
-                    reqs.Add(req);
+                    var act = new ArrayList() { id, nombre, description, req_Id, assignee, reporter, state };
+                    actvs.Add(act);
                 }
             }
-            return reqs;
+            return actvs;
         }
 
         public List<ArrayList> getRequirementActivities(int requirementId) {

@@ -43,7 +43,7 @@
                 <select name="requirementId">
 
                     @for (int index = 0; index < Model.requirements.Count; index++) {
-                        var l = Model.projects[index];
+                        var l = Model.requirements[index];
 
                         <option value="@l[1]">@l[0]</option>
                     }

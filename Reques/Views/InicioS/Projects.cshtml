@@ -57,17 +57,17 @@
 
             <div id="signUpMessage">
                 <p>There are no activities yet</p><br/>
-                <input class="createBtnPrpl" type="button" value="Add Activities" onclick="location.href='/InicioS/RolesAndCollaborators';">
+                <input class="createBtnPrpl" type="button" value="Add Activities" onclick="location.href='/InicioS/CreateActivity';">
             </div>
 
 
         } else {
-            for (int index = 0; index < Model.proyectos.Count; index++) {
+            for (int index = 0; index < Model.actividades.Count; index++) {
                 var l = Model.actividades[index];
 
                 <div class="projectDiv">
-                    <a href="/InicioS/ProjectRequirements/@l[1]">Ver Proyecto</a>
-                    <p>@l[0]</p>
+                    <p>@l[1]</p><br />
+                    <input class="createBtnPrpl" type="button" value="Ver Actividad" onclick="location.href='/InicioS/ActivityView/@l[0]';">
                 </div>
             }
         }
